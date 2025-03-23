@@ -1,10 +1,4 @@
-### IntelliJ IDEA ###
-.idea/
-/structureClasses.iml
-out/
-!**/src/main/**/out/
-!**/src/test/**/out/
-
+https://github.com/Onilis/structureClasses/pull/3
 ### Eclipse ###
 .apt_generated
 .classpath
