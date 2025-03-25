@@ -11,7 +11,7 @@ public abstract class Product {
         return name;
     }
 
-    public abstract int getPrice(); // Абстрактный метод
+    public abstract int getPrice();
 
     public abstract boolean isSpecial();
 

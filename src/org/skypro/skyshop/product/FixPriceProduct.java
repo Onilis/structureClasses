@@ -8,7 +8,7 @@ public class FixPriceProduct extends Product {
     }
 
     @Override
-    public int getPrice() { // Реализация абстрактного метода
+    public int getPrice() {
         return FIX_PRICE;
     }
 

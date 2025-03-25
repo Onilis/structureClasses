@@ -34,7 +34,7 @@ public class ProductBasket {
             return;
         }
 
-        Product product; // Отложенная инициализация
+        Product product;
         int specialCount = 0;
         int totalPrice = 0;
 
