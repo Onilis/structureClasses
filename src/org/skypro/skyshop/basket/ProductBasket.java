@@ -24,7 +24,6 @@ public class ProductBasket {
         return productCount;
     }
 
-    // Геттер для доступа к массиву products
     public Product[] getProducts() {
         return products;
     }

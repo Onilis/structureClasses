@@ -11,10 +11,8 @@ import java.util.Arrays;
 
 public class App {
     public static void main(String[] args) {
-        // Создание SearchEngine
         SearchEngine engine = new SearchEngine(20);
 
-        // Создание корзины и добавление товаров
         ProductBasket basket = new ProductBasket();
         basket.addProduct(new SimpleProduct("Яблоко", 52));
         basket.addProduct(new SimpleProduct("Банан", 73));
@@ -22,17 +20,14 @@ public class App {
         basket.addProduct(new SimpleProduct("Виноград", 85));
         basket.addProduct(new SimpleProduct("Дыня", 91));
 
-        // Добавление всех товаров из корзины в SearchEngine
         for (int i = 0; i < basket.size(); i++) {
-            engine.add(basket.getProducts()[i]); // Используем геттер для доступа к products
+            engine.add(basket.getProducts()[i]);
         }
 
-        // Добавление статей
         engine.add(new Article("Как выбрать смартфон", "Советы по выбору мобильного телефона"));
         engine.add(new Article("Подарочные наборы", "Инструкция по оформлению подарочных сертификатов"));
         engine.add(new Article("Скидки и акции", "Как участвовать в распродажах"));
 
-        // Поиск
         System.out.println("\nТест поиска по товарам:");
         System.out.println(Arrays.toString(engine.search("яблоко")));
 
