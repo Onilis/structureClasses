@@ -14,56 +14,18 @@ public class ProductBasket {
 
     public void addProduct(Product product) {
         if (productCount < MAX_SIZE) {
-            products[productCount++] = product; // Упрощенная запись
+            products[productCount++] = product;
         } else {
-            System.out.println("Невозможно добавить продукт");
+            System.out.println("Невозможно добавить продукт: корзина заполнена.");
         }
     }
 
-    public int getTotalPrice() {
-        int totalPrice = 0;
-        for (int i = 0; i < productCount; i++) {
-            totalPrice += products[i].getPrice();
-        }
-        return totalPrice;
+    public int size() {
+        return productCount;
     }
 
-    public void printBasket() {
-        if (productCount == 0) {
-            System.out.println("В корзине пусто");
-            return;
-        }
-
-        Product product;
-        int specialCount = 0;
-        int totalPrice = 0;
-
-        for (int i = 0; i < productCount; i++) {
-            product = products[i];
-            System.out.println(product.toString());
-            totalPrice += product.getPrice();
-            if (product.isSpecial()) {
-                specialCount++;
-            }
-        }
-
-        System.out.printf("Итого: %d руб.%n", totalPrice);
-        System.out.printf("Специальных товаров: %d%n", specialCount);
-    }
-
-    public boolean containsProduct(String productName) {
-        for (int i = 0; i < productCount; i++) {
-            if (products[i].getName().equals(productName)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void clearBasket() {
-        for (int i = 0; i < productCount; i++) {
-            products[i] = null;
-        }
-        productCount = 0;
+    // Геттер для доступа к массиву products
+    public Product[] getProducts() {
+        return products;
     }
 }
