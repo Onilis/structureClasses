@@ -14,8 +14,7 @@ public class ProductBasket {
 
     public void addProduct(Product product) {
         if (productCount < MAX_SIZE) {
-            products[productCount] = product;
-            productCount++;
+            products[productCount++] = product; // Упрощенная запись
         } else {
             System.out.println("Невозможно добавить продукт");
         }
@@ -35,11 +34,12 @@ public class ProductBasket {
             return;
         }
 
+        Product product;
         int specialCount = 0;
         int totalPrice = 0;
 
         for (int i = 0; i < productCount; i++) {
-            Product product = products[i];
+            product = products[i];
             System.out.println(product.toString());
             totalPrice += product.getPrice();
             if (product.isSpecial()) {
