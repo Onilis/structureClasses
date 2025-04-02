@@ -1,5 +1,8 @@
 package org.skypro.skyshop.search;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SearchEngine {
     private final Searchable[] searchables;
     private int currentSize;
@@ -16,16 +19,18 @@ public class SearchEngine {
     }
 
     public Searchable[] search(String query) {
-        Searchable[] results = new Searchable[5];
-        int found = 0;
+        List<Searchable> results = new ArrayList<>();
 
-        for (int i = 0; i < currentSize && found < 5; i++) {
+        for (int i = 0; i < currentSize; i++) {
             Searchable searchable = searchables[i];
             if (searchable.getSearchTerm().toLowerCase().contains(query.toLowerCase())) {
-                results[found++] = searchable;
+                results.add(searchable);
+                if (results.size() == 5) {
+                    break;
+                }
             }
         }
 
-        return results;
+        return results.toArray(new Searchable[0]);
     }
 }
