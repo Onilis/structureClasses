@@ -1,43 +1,34 @@
-package org.skypro.skyshop;
-
-import org.skypro.skyshop.basket.ProductBasket;
-import org.skypro.skyshop.content.Article;
-import org.skypro.skyshop.product.DiscountProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
+import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.product.SimpleProduct;
+import org.skypro.skyshop.search.BestResultNotFound;
 import org.skypro.skyshop.search.SearchEngine;
-
-import java.util.Arrays;
+import org.skypro.skyshop.search.Searchable;
 
 public class App {
     public static void main(String[] args) {
-        SearchEngine engine = new SearchEngine(20);
+        SearchEngine engine = new SearchEngine();
+        engine.add(new SimpleProduct("Простой продукт", 100));
+        engine.add(new SimpleProduct("Продукт для поиска", 200));
+        engine.add(new SimpleProduct("Поиск продукта", 300));
 
-        ProductBasket basket = new ProductBasket();
-        basket.addProduct(new SimpleProduct("Яблоко", 52));
-        basket.addProduct(new SimpleProduct("Банан", 73));
-        basket.addProduct(new SimpleProduct("Апельсин", 64));
-        basket.addProduct(new SimpleProduct("Виноград", 85));
-        basket.addProduct(new SimpleProduct("Дыня", 91));
-
-        for (int i = 0; i < basket.size(); i++) {
-            engine.add(basket.getProducts()[i]);
+        try {
+            Product product1 = new SimpleProduct("", 100); // Пустое название
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка при создании product1: " + e.getMessage());
         }
 
-        engine.add(new Article("Как выбрать смартфон", "Советы по выбору мобильного телефона"));
-        engine.add(new Article("Подарочные наборы", "Инструкция по оформлению подарочных сертификатов"));
-        engine.add(new Article("Скидки и акции", "Как участвовать в распродажах"));
+        try {
+            Searchable bestMatch = engine.findBestMatch("продукт");
+            System.out.println("Лучший результат: " + bestMatch.getStringRepresentation());
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка при поиске лучшего результата: " + e.getMessage());
+        }
 
-        System.out.println("\nТест поиска по товарам:");
-        System.out.println(Arrays.toString(engine.search("яблоко")));
-
-        System.out.println("\nТест поиска по статьям:");
-        System.out.println(Arrays.toString(engine.search("подарочные")));
-
-        System.out.println("\nТест поиска по нескольким типам:");
-        System.out.println(Arrays.toString(engine.search("с")));
-
-        System.out.println("\nТест поиска с пустым результатом:");
-        System.out.println(Arrays.toString(engine.search("не существует")));
+        try {
+            Searchable bestMatch = engine.findBestMatch("не существует");
+            System.out.println("Лучший результат: " + bestMatch.getStringRepresentation());
+        } catch (BestResultNotFound e) {
+            System.out.println("Ошибка при поиске лучшего результата: " + e.getMessage());
+        }
     }
 }

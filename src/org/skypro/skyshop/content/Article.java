@@ -7,10 +7,10 @@ public final class Article implements Searchable {
     private final String text;
 
     public Article(String title, String text) {
-        if (title == null || title.isEmpty()) {
+        if (title == null || title.trim().isEmpty()) {
             throw new IllegalArgumentException("Название статьи не может быть пустым");
         }
-        if (text == null || text.isEmpty()) {
+        if (text == null || text.trim().isEmpty()) {
             throw new IllegalArgumentException("Текст статьи не может быть пустым");
         }
         this.title = title;
@@ -19,9 +19,8 @@ public final class Article implements Searchable {
 
     @Override
     public String getSearchTerm() {
-        return getName() + " " + getText();
+        return title + " " + text;
     }
-
 
     @Override
     public String getContentType() {
@@ -30,10 +29,6 @@ public final class Article implements Searchable {
 
     @Override
     public String getName() {
-        return title;
-    }
-
-    public String getTitle() {
         return title;
     }
 
