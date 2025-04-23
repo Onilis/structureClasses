@@ -4,33 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchEngine {
-    private final List<Searchable> searchables;
-
-    public SearchEngine() {
-        this.searchables = new ArrayList<>();
-    }
+    private final List<Searchable> searchables = new ArrayList<>();
 
     public void add(Searchable searchable) {
         if (searchable != null) {
             searchables.add(searchable);
-        } else {
-            throw new NullPointerException("Поисковый объект не может быть null");
         }
     }
 
-    public Searchable[] search(String query, int maxResults) {
+    public List<Searchable> search(String query) {
         List<Searchable> results = new ArrayList<>();
+        String lowerQuery = query.toLowerCase();
 
         for (Searchable searchable : searchables) {
-            if (searchable.getSearchTerm().toLowerCase().contains(query.toLowerCase())) {
+            if (searchable.getSearchTerm().toLowerCase().contains(lowerQuery)) {
                 results.add(searchable);
-                if (results.size() == maxResults) {
-                    break;
-                }
             }
         }
-
-        return results.toArray(new Searchable[0]);
+        return results;
     }
 
     public Searchable findBestMatch(String search) throws BestResultNotFound {
@@ -58,13 +49,10 @@ public class SearchEngine {
 
         while (true) {
             index = text.toLowerCase().indexOf(search.toLowerCase(), index);
-            if (index == -1) {
-                break;
-            }
+            if (index == -1) break;
             occurrences++;
             index += search.length();
         }
-
         return occurrences;
     }
 }
