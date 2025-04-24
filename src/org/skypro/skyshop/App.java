@@ -1,11 +1,8 @@
-import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.content.Article;
-import org.skypro.skyshop.product.DiscountProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.search.Searchable;
-import java.util.Map;
+
 import java.util.Set;
 
 public class App {
